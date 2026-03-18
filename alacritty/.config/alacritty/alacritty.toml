@@ -1,0 +1,15 @@
+[window]
+dimensions = { columns = 120, lines = 30 }
+
+[font]
+normal = { family = "JetBrainsMonoNerdFont" }
+
+[bell]
+duration = 200
+color = "#1c1c1c"
+
+[cursor]
+style = { shape = "Block", blinking = "On"  }
+
+[mouse]
+hide_when_typing = true
