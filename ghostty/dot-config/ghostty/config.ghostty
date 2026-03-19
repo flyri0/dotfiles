@@ -1,0 +1,8 @@
+font-family = "JetBrainsMonoNL Nerd Font"
+theme = Adwaita Dark
+cursor-style = block
+cursor-style-blink = true
+mouse-hide-while-typing = true
+clipboard-read = allow
+clipboard-write = allow
+shell-integration-features = no-cursor
