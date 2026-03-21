@@ -1,4 +1,5 @@
 path+=($HOME/.local/bin/)
+path+=($HOME/go/bin)
 export EDITOR=micro
 
 HISTFILE=~/.zsh_history
