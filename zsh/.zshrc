@@ -1,6 +1,7 @@
+export GOPATH=$HOME/.go
+
 path+=($HOME/.local/bin/)
-path+=($HOME/go/bin)
-export EDITOR=micro
+path+=($HOME/$GOPATH/bin)
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
