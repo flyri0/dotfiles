@@ -1,34 +1,60 @@
-export GOPATH=$HOME/.go
+# ------------------------------------------------------------------------------
+# 1. ENVIRONMENT & PATHS
+# ------------------------------------------------------------------------------
+export GOPATH="$HOME/.go"
 
-path+=($HOME/.local/bin/)
-path+=($HOME/$GOPATH/bin)
+# Add local binaries to path
+path+=("$HOME/.local/bin")
 
+# ------------------------------------------------------------------------------
+# 2. SHELL HISTORY CONFIGURATION
+# ------------------------------------------------------------------------------
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
-setopt HIST_REDUCE_BLANKS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
 
-# Antigen
-source $HOME/.antigen.zsh
+setopt INC_APPEND_HISTORY     # Write to history file immediately, not at logout
+setopt SHARE_HISTORY          # Share history between all active sessions
+setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks from history commands
+setopt HIST_IGNORE_ALL_DUPS   # Delete older duplicate entries in history
+setopt HIST_IGNORE_SPACE      # Don't record commands starting with a space
 
+# ------------------------------------------------------------------------------
+# 3. PLUGIN MANAGEMENT (Antigen)
+# ------------------------------------------------------------------------------
+source "$HOME/.antigen.zsh"
+
+# Theme
 antigen theme romkatv/powerlevel10k
+
+# Standard Library Bundles
 antigen bundle git
 antigen bundle pip
 antigen bundle command-not-found
 
+# Community Extensions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 
 antigen apply
 
-if [[ ! -f /.dockerenv && -z "$container" ]]; then
-	fastfetch -c "$HOME/.config/fastfetch/fastfetch.json"
+# ------------------------------------------------------------------------------
+# 4. CONTEXTUAL EXECUTION (Container vs. Host)
+# ------------------------------------------------------------------------------
+# Detects Docker (.dockerenv), Podman (.containerenv), or generic container vars
+if [[ -f /.dockerenv || -f /run/.containerenv || -n "$container" ]]; then
+    # INSIDE CONTAINER: Prioritize Go binaries for development
+    path+=("$GOPATH/bin")
+else
+    # HOST MACHINE: Show system summary on login
+    if command -v fastfetch &> /dev/null; then
+        fastfetch -c "$HOME/.config/fastfetch/fastfetch.json"
+    fi
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# ------------------------------------------------------------------------------
+# 5. PROMPT CUSTOMIZATION
+# ------------------------------------------------------------------------------
+# Load Powerlevel10k configuration if it exists
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
