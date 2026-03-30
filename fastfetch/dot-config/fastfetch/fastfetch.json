@@ -72,8 +72,8 @@
     },
     "break",
     {
-      "type": "custom",
-      "format": "\u001b[90m \u001b[91m \u001b[92m \u001b[93m \u001b[94m \u001b[95m \u001b[96m \u001b[97m"
+      "type": "colors",
+      "symbol": "circle"
     },
     "break"
   ]
