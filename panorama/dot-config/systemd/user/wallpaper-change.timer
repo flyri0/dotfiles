@@ -1,0 +1,9 @@
+[Unit]
+Description=Run wallpaper-change every hour and catch up if missed
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+
+[Install]
+WantedBy=timers.target

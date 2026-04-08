@@ -1,0 +1,9 @@
+[Unit]
+Description=Change wallpaper using panorama
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/bin/sleep 5
+ExecStart=%h/.local/bin/panorama -cache-time 6h -user FurFles -id 1605088
