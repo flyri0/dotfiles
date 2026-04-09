@@ -6,4 +6,4 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 ExecStartPre=/usr/bin/sleep 5
-ExecStart=%h/.local/bin/panorama -cache-time 6h -user FurFles -id 1605088
+ExecStart=%h/.local/bin/panorama -no-repeat -cache-time 6h -user FurFles -id 1605088
