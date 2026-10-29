@@ -1,6 +1,4 @@
-
 # Environment & Paths
-export GOPATH="$HOME/.go"
 path+=("$HOME/.local/bin")
 
 # Shell History
@@ -30,25 +28,15 @@ antigen bundle zsh-users/zsh-completions
 
 antigen apply
 
-# Container / Host
-if [[ -f /.dockerenv || -f /run/.containerenv || -n "$container" ]]; then
-    path+=("$GOPATH/bin")
-else
-    if command -v fastfetch &> /dev/null; then
-        fastfetch -c "$HOME/.config/fastfetch/fastfetch.json"
-    fi
+# Fastfetch
+if command -v fastfetch &> /dev/null; then
+	fastfetch -c "$HOME/.config/fastfetch/fastfetch.json"
 fi
 
 # Prompt
 [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
 
-# Antigravity CLI
-export PATH="/home/flyrio/.local/bin:$PATH"
-
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
 [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
-
-# Distrobox
-alias archdev='distrobox enter ArchDev --no-workdir'
