@@ -28,6 +28,14 @@ antigen bundle zsh-users/zsh-completions
 
 antigen apply
 
+# Bindings
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+bindkey '^[[5C' forward-word
+bindkey '^[[5D' backward-word
+bindkey '^[Oc' forward-word
+bindkey '^[Od' backward-word
+
 # Fastfetch
 if command -v fastfetch &> /dev/null; then
 	fastfetch -c "$HOME/.config/fastfetch/fastfetch.json"
